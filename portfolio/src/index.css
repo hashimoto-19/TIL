@@ -87,7 +87,44 @@ button {
 }
 
 .hero {
+  display: grid;
+  gap: 2rem;
   padding: 1rem 0 3rem;
+}
+
+.hero-copy {
+  max-width: 40rem;
+}
+
+.hero-visual {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.hero-visual img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  object-fit: cover;
+  border-radius: 1.25rem;
+  box-shadow: var(--shadow);
+  aspect-ratio: 16 / 9;
+  background: #2f6f5e;
+  transform: scale(1);
+  transition: transform 0.8s ease;
+}
+
+.hero-visual:hover img {
+  transform: scale(1.02);
+}
+
+.hero-visual figcaption {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
 }
 
 .eyebrow {
@@ -223,6 +260,51 @@ button {
   border-color: var(--accent);
 }
 
+.card.static-card {
+  cursor: default;
+}
+
+.card.static-card:hover {
+  transform: none;
+  border-color: var(--border);
+}
+
+.section-actions {
+  margin: 0 0 1.25rem;
+}
+
+.yamap-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.yamap-widget {
+  min-height: 120px;
+}
+
+.yamap-grid blockquote,
+.yamap-grid iframe[data-widget='yamap-widget'] {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.yamap-grid blockquote {
+  padding: 1rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.yamap-grid blockquote a {
+  color: var(--accent);
+}
+
 .card h3 {
   margin: 0 0 0.5rem;
   font-size: 1.05rem;
@@ -340,7 +422,30 @@ button {
     margin-bottom: 2rem;
   }
 
+  .hero {
+    gap: 1.5rem;
+  }
+
+  .hero-visual img {
+    border-radius: 1rem;
+    aspect-ratio: 4 / 3;
+    min-height: 220px;
+  }
+
   .section {
     padding: 2rem 0;
+  }
+}
+
+@media (min-width: 900px) {
+  .hero {
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: end;
+    gap: 2.5rem;
+  }
+
+  .hero-visual img {
+    aspect-ratio: 4 / 5;
+    min-height: 420px;
   }
 }
