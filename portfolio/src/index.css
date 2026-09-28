@@ -51,7 +51,7 @@ button {
 }
 
 .page {
-  width: min(920px, calc(100% - 2rem));
+  width: min(1100px, calc(100% - 2rem));
   margin: 0 auto;
   padding: 1.5rem 0 4rem;
 }
@@ -275,18 +275,37 @@ button {
 
 .yamap-grid {
   display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 1rem;
+  align-items: start;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .yamap-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .yamap-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .yamap-widget {
-  min-height: 120px;
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .yamap-grid blockquote,
 .yamap-grid iframe[data-widget='yamap-widget'] {
   display: block;
-  width: 100%;
-  max-width: 100%;
+  box-sizing: border-box;
+  width: 100% !important;
+  max-width: 100% !important;
   margin: 0;
   border: 1px solid var(--border);
   border-radius: 1rem;
@@ -413,7 +432,7 @@ button {
 
 @media (max-width: 640px) {
   .page {
-    width: min(100% - 1.5rem, 920px);
+    width: min(100% - 1.5rem, 1100px);
     padding-top: 1rem;
   }
 
