@@ -66,6 +66,28 @@ const games = [
   },
 ]
 
+const gourmets = [
+  {
+    title: '台湾グルメ',
+    note: '旅先で食べたもの・お気に入りを少しずつ載せていきます',
+  },
+  {
+    title: '登山後のごほうび',
+    note: '山頂や下山後に楽しむご飯・カフェなど',
+  },
+]
+
+const movies = [
+  {
+    title: '好きな映画',
+    note: 'あとからタイトルを差し替えます',
+  },
+  {
+    title: '最近見た映画',
+    note: '感想メモを少しずつ残していきます',
+  },
+]
+
 function getInitialTheme() {
   const saved = localStorage.getItem('theme')
   if (saved === 'light' || saved === 'dark') return saved
@@ -81,6 +103,17 @@ function YamapWidget({ activity }) {
     const container = containerRef.current
     if (!container || container.dataset.ready === 'true') return
 
+    const fitIframe = () => {
+      const iframe = container.querySelector('iframe[data-widget="yamap-widget"]')
+      if (!iframe) return
+      iframe.removeAttribute('width')
+      iframe.style.width = '100%'
+      iframe.style.maxWidth = '100%'
+    }
+
+    const observer = new MutationObserver(fitIframe)
+    observer.observe(container, { childList: true })
+
     container.innerHTML = `
       <blockquote
         data-yamap-widget
@@ -94,6 +127,9 @@ function YamapWidget({ activity }) {
       </blockquote>
     `
     container.dataset.ready = 'true'
+    fitIframe()
+
+    return () => observer.disconnect()
   }, [activity])
 
   return <div ref={containerRef} className="yamap-widget" />
@@ -122,7 +158,7 @@ export default function App() {
             <h1>Hashimoto</h1>
             <p className="handle">@hashimoto-19</p>
             <p className="lead">
-              React を学びながら、山登り・読書・ゲーム・台湾華語・旅行も大切にしている開発者です。
+              React を学びながら、山登り・グルメ・映画・読書・ゲーム・台湾華語・旅行も大切にしている開発者です。
               名刺代わりに、仕事と趣味の両方を伝えられるサイトを目指しています。
             </p>
             <div className="actions">
@@ -166,7 +202,7 @@ export default function App() {
             JavaScript を中心に学習中です。将来的にはアプリ開発や副業にもつなげたいと考えています。
           </p>
           <p>
-            休日は山に登ったり、本を読んだり、ゲームをしたり、旅行の写真を撮ったり、台湾華語の勉強を続けています。
+            休日は山に登ったり、おいしいものを食べたり、映画を見たり、本を読んだり、ゲームをしたり、旅行の写真を撮ったり、台湾華語の勉強を続けています。
           </p>
         </section>
 
@@ -238,6 +274,34 @@ export default function App() {
               <div key={game.title} className="card static-card">
                 <h3>{game.title}</h3>
                 <p>{game.note}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="section fade-in" id="gourmet">
+          <h2>グルメ</h2>
+          <p>
+            食べることも好きです。旅先や登山のあとに出会ったおいしいものを、少しずつ残していきます。
+          </p>
+          <div className="card-grid">
+            {gourmets.map((item) => (
+              <div key={item.title} className="card static-card">
+                <h3>{item.title}</h3>
+                <p>{item.note}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="section fade-in" id="movies">
+          <h2>映画</h2>
+          <p>映画を見るのも好きです。印象に残った作品を少しずつ載せていきます。</p>
+          <div className="card-grid">
+            {movies.map((movie) => (
+              <div key={movie.title} className="card static-card">
+                <h3>{movie.title}</h3>
+                <p>{movie.note}</p>
               </div>
             ))}
           </div>
