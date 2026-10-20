@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Footer from './components/Footer.jsx'
 import Header from './components/Header.jsx'
+import HeroSlider from './components/HeroSlider.jsx'
 
 const yamapUrl = 'https://yamap.com/users/2269519'
 
@@ -12,16 +13,29 @@ const skills = [
   'SQL',
 ]
 
+const heroSlides = [
+  {
+    src: '/images/taiwan-hero.jpg',
+    alt: '象山から見た台北101',
+    position: '12% center',
+  },
+  {
+    src: '/images/taiwan-hero.jpg',
+    alt: '象山から見た台北の街並み',
+    position: '50% center',
+  },
+  {
+    src: '/images/taiwan-hero.jpg',
+    alt: '象山から見た台北の高層ビル群',
+    position: '88% center',
+  },
+]
+
 const works = [
   {
     title: 'TIL',
     description: '日々の学びを記録するリポジトリ',
     href: 'https://github.com/hashimoto-19/TIL',
-  },
-  {
-    title: 'Learning React',
-    description: 'React 入門クエストで学習中',
-    href: 'https://github.com/hashimoto-19',
   },
 ]
 
@@ -54,15 +68,15 @@ const travelPhotos = [
 
 const books = [
   {
-    title: '好きな本・最近読んだ本',
-    note: 'あとからタイトルを差し替えます',
+    title: '最近読んだ本',
+    note: '敗れてもまた走れ:アシックス創業者 鬼塚喜八郎の情熱「オニツカタイガー」を創った「靴の鬼才」はなぜ世界と戦い続けたか',
   },
 ]
 
 const games = [
   {
     title: '好きなゲーム',
-    note: 'あとからタイトルを差し替えます',
+    note: 'バイオハザードre4',
   },
 ]
 
@@ -184,15 +198,10 @@ export default function App() {
             </div>
           </div>
 
-          <figure className="hero-visual">
-            <img
-              src="/images/taiwan-hero.jpg"
-              alt="象山から見た台北の景色"
-              width={1920}
-              height={1080}
-            />
-            <figcaption>Taiwan · Taipei from Xiangshan</figcaption>
-          </figure>
+          <HeroSlider
+            slides={heroSlides}
+            caption="Taiwan · Taipei from Xiangshan"
+          />
         </section>
 
         <section className="section fade-in" id="about">
