@@ -19,7 +19,7 @@ function Chevron({ direction }) {
   )
 }
 
-export default function HeroSlider({ slides, caption }) {
+export default function HeroSlider({ slides }) {
   const count = slides.length
   const [index, setIndex] = useState(0)
   const [paused, setPaused] = useState(false)
@@ -53,8 +53,11 @@ export default function HeroSlider({ slides, caption }) {
   }
 
   return (
-    <figure
-      className="hero-visual"
+    <div
+      className="hero-slider"
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="メイン画像"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocus={() => setPaused(true)}
@@ -63,70 +66,62 @@ export default function HeroSlider({ slides, caption }) {
           setPaused(false)
         }
       }}
+      onPointerDown={onPointerDown}
+      onPointerUp={onPointerUp}
+      onPointerCancel={() => {
+        dragStart.current = null
+      }}
     >
       <div
-        className="hero-slider"
-        role="region"
-        aria-roledescription="carousel"
-        aria-label="メイン画像"
-        onPointerDown={onPointerDown}
-        onPointerUp={onPointerUp}
-        onPointerCancel={() => {
-          dragStart.current = null
-        }}
+        className="hero-track"
+        style={{ transform: `translateX(-${index * 100}%)` }}
       >
-        <div
-          className="hero-track"
-          style={{ transform: `translateX(-${index * 100}%)` }}
-        >
-          {slides.map((slide, slideIndex) => (
-            <div className="hero-slide" key={`${slide.alt}-${slideIndex}`}>
-              <img
-                src={slide.src}
-                alt={slide.alt}
-                width={1920}
-                height={1080}
-                style={{ objectPosition: slide.position }}
-                draggable="false"
-              />
-            </div>
-          ))}
-        </div>
-
-        {count > 1 && (
-          <>
-            <button
-              type="button"
-              className="hero-nav prev"
-              aria-label="前の画像"
-              onClick={() => go(-1)}
-            >
-              <Chevron direction="prev" />
-            </button>
-            <button
-              type="button"
-              className="hero-nav next"
-              aria-label="次の画像"
-              onClick={() => go(1)}
-            >
-              <Chevron direction="next" />
-            </button>
-            <div className="hero-dots">
-              {slides.map((slide, slideIndex) => (
-                <button
-                  key={slide.alt}
-                  type="button"
-                  className={slideIndex === index ? 'is-active' : undefined}
-                  aria-label={`${slideIndex + 1}枚目を表示`}
-                  aria-current={slideIndex === index ? 'true' : undefined}
-                  onClick={() => setIndex(slideIndex)}
-                />
-              ))}
-            </div>
-          </>
-        )}
+        {slides.map((slide, slideIndex) => (
+          <div className="hero-slide" key={`${slide.alt}-${slideIndex}`}>
+            <img
+              src={slide.src}
+              alt={slide.alt}
+              width={1920}
+              height={1080}
+              style={{ objectPosition: slide.position }}
+              draggable="false"
+            />
+          </div>
+        ))}
       </div>
-      <figcaption>{caption}</figcaption>
-    </figure>
+
+      {count > 1 && (
+        <>
+          <button
+            type="button"
+            className="hero-nav prev"
+            aria-label="前の画像"
+            onClick={() => go(-1)}
+          >
+            <Chevron direction="prev" />
+          </button>
+          <button
+            type="button"
+            className="hero-nav next"
+            aria-label="次の画像"
+            onClick={() => go(1)}
+          >
+            <Chevron direction="next" />
+          </button>
+          <div className="hero-dots">
+            {slides.map((slide, slideIndex) => (
+              <button
+                key={slide.alt}
+                type="button"
+                className={slideIndex === index ? 'is-active' : undefined}
+                aria-label={`${slideIndex + 1}枚目を表示`}
+                aria-current={slideIndex === index ? 'true' : undefined}
+                onClick={() => setIndex(slideIndex)}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
   )
 }

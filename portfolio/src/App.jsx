@@ -167,10 +167,12 @@ export default function App() {
 
       <main>
         <section className="hero fade-in">
-          <div className="hero-copy">
-            <p className="eyebrow">Portfolio</p>
+          <div className="hero-banner">
+            <HeroSlider slides={heroSlides} />
+          </div>
+
+          <div className="hero-foot">
             <h1>Hashimoto</h1>
-            <p className="handle">@hashimoto-19</p>
             <p className="lead">
               React を学びながら、山登り・グルメ・映画・読書・ゲーム・台湾華語・旅行も大切にしている開発者です。
               名刺代わりに、仕事と趣味の両方を伝えられるサイトを目指しています。
@@ -197,18 +199,13 @@ export default function App() {
               </a>
             </div>
           </div>
-
-          <HeroSlider
-            slides={heroSlides}
-            caption="Taiwan · Taipei from Xiangshan"
-          />
         </section>
 
         <section className="section fade-in" id="about">
           <h2>About</h2>
           <p>
             社内ディレクション・運用・保守の経験を活かしつつ、いまは React と
-            JavaScript を中心に学習中です。将来的にはアプリ開発や副業にもつなげたいと考えています。
+            JavaScript を中心に学習中です。アプリ開発をしていきます。
           </p>
           <p>
             休日は山に登ったり、おいしいものを食べたり、映画を見たり、本を読んだり、ゲームをしたり、旅行の写真を撮ったり、台湾華語の勉強を続けています。

@@ -60,7 +60,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 4rem;
+  margin-bottom: 1rem;
 }
 
 .logo {
@@ -88,28 +88,37 @@ button {
 
 .hero {
   display: grid;
-  gap: 2rem;
-  padding: 1rem 0 3rem;
+  gap: 1.5rem;
+  padding: 0.5rem 0 3rem;
 }
 
-.hero-copy {
-  max-width: 40rem;
+.hero-banner {
+  overflow: hidden;
+  min-height: 360px;
+  border-radius: 2rem;
+  box-shadow: var(--shadow);
+  background: #2f6f5e;
 }
 
-.hero-visual {
-  display: grid;
-  gap: 0.75rem;
-  margin: 0;
+.hero-foot {
+  max-width: 42rem;
+}
+
+.hero-foot h1 {
+  margin: 0 0 0.75rem;
+  font-size: clamp(2.2rem, 6vw, 3.4rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
 }
 
 .hero-slider {
   position: relative;
+  min-width: 0;
+  min-height: 360px;
+  height: min(72vh, 640px);
   overflow: hidden;
-  min-height: 280px;
-  aspect-ratio: 16 / 9;
-  border-radius: 1.25rem;
-  background: #2f6f5e;
-  box-shadow: var(--shadow);
+  background: #214f40;
   touch-action: pan-y;
 }
 
@@ -195,39 +204,9 @@ button {
   }
 }
 
-.hero-visual figcaption {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.85rem;
-  letter-spacing: 0.02em;
-}
-
-.eyebrow {
-  margin: 0 0 0.75rem;
-  color: var(--accent);
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.hero h1 {
-  margin: 0;
-  font-size: clamp(2.6rem, 8vw, 4.4rem);
-  font-weight: 600;
-  letter-spacing: -0.04em;
-  line-height: 1.05;
-}
-
-.handle {
-  margin: 0.75rem 0 0;
-  color: var(--muted);
-  font-size: 1rem;
-}
-
 .lead {
   max-width: 38rem;
-  margin: 1.5rem 0 0;
+  margin: 0;
   color: var(--muted);
   font-size: 1.05rem;
 }
@@ -236,7 +215,7 @@ button {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  margin-top: 2rem;
+  margin-top: 1.25rem;
 }
 
 .button {
@@ -517,13 +496,17 @@ button {
   }
 
   .hero {
-    gap: 1.5rem;
+    gap: 1.25rem;
+  }
+
+  .hero-banner {
+    border-radius: 1.35rem;
+    min-height: 280px;
   }
 
   .hero-slider {
-    border-radius: 1rem;
-    aspect-ratio: 4 / 3;
-    min-height: 220px;
+    min-height: 280px;
+    height: min(58vh, 440px);
   }
 
   .section {
@@ -532,14 +515,12 @@ button {
 }
 
 @media (min-width: 900px) {
-  .hero {
-    grid-template-columns: 1.05fr 0.95fr;
-    align-items: end;
-    gap: 2.5rem;
+  .hero-banner {
+    min-height: 520px;
   }
 
   .hero-slider {
-    aspect-ratio: 4 / 5;
-    min-height: 420px;
+    min-height: 520px;
+    height: min(78vh, 720px);
   }
 }
