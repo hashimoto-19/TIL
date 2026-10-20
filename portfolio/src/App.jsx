@@ -177,27 +177,6 @@ export default function App() {
               React を学びながら、山登り・グルメ・映画・読書・ゲーム・台湾華語・旅行も大切にしている開発者です。
               名刺代わりに、仕事と趣味の両方を伝えられるサイトを目指しています。
             </p>
-            <div className="actions">
-              <a
-                className="button primary"
-                href="https://github.com/hashimoto-19"
-                target="_blank"
-                rel="noreferrer"
-              >
-                GitHub
-              </a>
-              <a
-                className="button ghost"
-                href={yamapUrl}
-                target="_blank"
-                rel="noreferrer"
-              >
-                YAMAP
-              </a>
-              <a className="button ghost" href="#hiking">
-                山登り
-              </a>
-            </div>
           </div>
         </section>
 
