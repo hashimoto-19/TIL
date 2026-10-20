@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import Footer from './components/Footer.jsx'
 import Header from './components/Header.jsx'
 import HeroSlider from './components/HeroSlider.jsx'
+import WeatherCard from './components/WeatherCard.jsx'
 
 const yamapUrl = 'https://yamap.com/users/2269519'
 
@@ -190,6 +191,8 @@ export default function App() {
             休日は山に登ったり、おいしいものを食べたり、映画を見たり、本を読んだり、ゲームをしたり、旅行の写真を撮ったり、台湾華語の勉強を続けています。
           </p>
         </section>
+
+        <WeatherCard />
 
         <section className="section fade-in" id="hiking">
           <h2>山登り</h2>
