@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { useRevealOnEnter } from '../usePageMotion.js'
 
 const CITY_ID = '260010'
 const API_URL = `https://weather.tsukumijima.net/api/forecast?city=${CITY_ID}`
@@ -38,8 +39,10 @@ function DayForecast({ forecast }) {
 }
 
 export default function WeatherCard() {
+  const cardRef = useRef(null)
   const [status, setStatus] = useState('loading')
   const [weather, setWeather] = useState(null)
+  useRevealOnEnter(cardRef, status === 'ready')
 
   useEffect(() => {
     let cancelled = false
@@ -65,7 +68,7 @@ export default function WeatherCard() {
   }, [])
 
   return (
-    <section className="section fade-in weather-section" id="weather">
+    <section className="section weather-section" id="weather">
       <h2>天気</h2>
       <p>登山の参考に、京都の天気予報を表示しています。</p>
 
@@ -76,7 +79,7 @@ export default function WeatherCard() {
       )}
 
       {status === 'ready' && weather && (
-        <div className="weather-card">
+        <div className="weather-card" ref={cardRef}>
           <p className="weather-place">
             {weather.location?.prefecture} {weather.location?.city}
           </p>

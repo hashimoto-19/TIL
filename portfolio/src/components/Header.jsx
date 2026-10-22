@@ -1,7 +1,11 @@
+import { Link } from 'react-router-dom'
+
 export default function Header({ theme, onToggleTheme }) {
   return (
     <header className="topbar">
-      <p className="logo">hashimoto-19</p>
+      <Link className="logo" to="/">
+        hashimoto-19
+      </Link>
       <button
         type="button"
         className="theme-toggle"
